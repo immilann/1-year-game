@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Our Game ❤️</title>
+<style>
+    body {
+        margin: 0;
+        overflow: hidden;
+        font-family: 'Courier New', monospace;
+        background: black;
+    }
+
+    /* Pixelated background */
+    .background {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        background: url('lilbob.png') center/cover no-repeat;
+        filter: contrast(1.2) saturate(1.2) brightness(0.9) blur(0.5px);
+        image-rendering: pixelated;
+        animation: pulse 6s infinite alternate;
+    }
+
+    @keyframes pulse {
+        0% { filter: brightness(0.85) contrast(1.2); }
+        100% { filter: brightness(1) contrast(1.4); }
+    }
+
+    /* Overlay for darker pixel feel */
+    .overlay {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        background: rgba(0,0,0,0.4);
+    }
+
+    /* Title */
+    .title {
+        position: absolute;
+        top: 10%;
+        width: 100%;
+        text-align: center;
+        font-size: 48px;
+        color: #fff;
+        text-shadow: 0 0 10px #ff69b4;
+        animation: float 3s ease-in-out infinite;
+    }
+
+    @keyframes float {
+        0% { transform: translateY(0px); }
+        50% { transform: translateY(-10px); }
+        100% { transform: translateY(0px); }
+    }
+
+    /* Buttons */
+    .menu {
+        position: absolute;
+        right: 5%;
+        top: 40%;
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .btn {
+        padding: 15px 30px;
+        font-size: 20px;
+        background: #222;
+        color: white;
+        border: 3px solid white;
+        cursor: pointer;
+        transition: all 0.2s ease;
+        box-shadow: 0 0 10px #000;
+    }
+
+    .btn:hover {
+        background: #ff69b4;
+        transform: scale(1.1);
+        box-shadow: 0 0 15px #ff69b4;
+    }
+
+    /* Characters */
+    .character {
+        position: absolute;
+        bottom: 10%;
+        width: 60px;
+        height: 100px;
+        animation: bounce 2s infinite;
+    }
+
+    @keyframes bounce {
+        0%,100% { transform: translateY(0); }
+        50% { transform: translateY(-8px); }
+    }
+
+    /* Simple pixel-style blocks */
+    .you {
+        left: 30%;
+        background: linear-gradient(
+            to bottom,
+            brown 30%,      /* hair */
+            #f5c6a5 30%,    /* face */
+            #f5c6a5 60%,
+            green 60%,      /* jersey */
+            green 80%,
+            blue 80%        /* jeans */
+        );
+        border: 2px solid black;
+    }
+
+    .her {
+        left: 40%;
+        background: linear-gradient(
+            to bottom,
+            brown 30%,      /* hair */
+            #f5c6a5 30%,    /* face */
+            #f5c6a5 60%,
+            purple 60%,     /* shirt */
+            purple 80%,
+            blue 80%        /* jeans */
+        );
+        border: 2px solid black;
+    }
+
+    /* Subtle hearts floating */
+    .heart {
+        position: absolute;
+        color: pink;
+        font-size: 20px;
+        animation: floatUp 5s linear infinite;
+    }
+
+    @keyframes floatUp {
+        from {
+            transform: translateY(100vh);
+            opacity: 1;
+        }
+        to {
+            transform: translateY(-10vh);
+            opacity: 0;
+        }
+    }
+</style>
+</head>
+
+<body>
+
+<div class="background"></div>
+<div class="overlay"></div>
+
+<div class="title">Our Story ❤️</div>
+
+<div class="menu">
+    <button class="btn" onclick="play()">Play</button>
+    <button class="btn" onclick="stats()">Statistics</button>
+    <button class="btn" onclick="leave()">Leave</button>
+</div>
+
+<div class="character you"></div>
+<div class="character her"></div>
+
+<script>
+function play() {
+    alert("Start the story...");
+}
+
+function stats() {
+    alert("Stats coming soon 😉");
+}
+
+function leave() {
+    alert("You can't leave her that easily ❤️");
+}
+
+/* Floating hearts generator */
+setInterval(() => {
+    const heart = document.createElement("div");
+    heart.className = "heart";
+    heart.innerHTML = "❤️";
+    heart.style.left = Math.random() * 100 + "vw";
+    heart.style.fontSize = (Math.random() * 20 + 10) + "px";
+    document.body.appendChild(heart);
+
+    setTimeout(() => heart.remove(), 5000);
+}, 500);
+</script>
+
+</body>
+</html>
